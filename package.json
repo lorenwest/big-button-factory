@@ -1,0 +1,32 @@
+{
+  "name": "big-button-factory",
+  "description": "Monitor-Min Demo App",
+  "version": "0.1.0",
+  "keywords": ["monitor", "node-monitor", "demo", "big-button-factory", "monitoring", "control"],
+  "author": {
+    "name": "Loren West",
+    "email": "open_source@lorenwest.com",
+    "url": "http://github.com/lorenwest"
+  },
+  "homepage": "http://lorenwest.github.com/big-button-factory/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lorenwest/big-button-factory.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/lorenwest/big-button-factory/blob/master/LICENSE"
+    }
+  ],
+  "dependencies": {
+    "config": ">=0.4.17 <0.5.0",
+    "express": ">=3.4.2 <3.5.0",
+    "monitor-min": ">=0.5.8 <0.6.0"
+  },
+  "engines": { "node": ">= 0.4.0" },
+  "scripts": {
+    "start": "node app.js"
+  }
+}
+
