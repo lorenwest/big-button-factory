@@ -1,5 +1,82 @@
-<head>
-</head>
-<body>
-hello world
-</body>
+<!DOCTYPE html>
+<html lang="en" dir="ltr" id="big-button-factory">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Button Factory`</title>
+    <meta name="description" content="Monitor-Min Demo App.  See http://github.com/lorenwest/monitor-min for more information."/>
+    <meta name="author" content="Open Source http://github.com/lorenwest">
+    <meta name="author" content="Open Source http://github.com/derrickwest">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        margin: 0;
+      }
+      #header {
+        background-color: rgb(21,130,171);
+        height: 46px;
+      }
+      #header-inner {
+        color: white;
+        width: 960px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      #auth {
+        float:right;
+      }
+      #photo {
+        height: 0;
+        width: 0;
+      }
+      #center {
+        width: 960px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      #left {
+        float: left;
+        width: 639px;
+        border-right: 1px solid rgb(204,204,204);
+        height: 100%;
+      }
+      #right {
+        float: left;
+        width: 320px;
+      }
+
+      /* mobile */
+      @media (max-width: 960px){
+        #header-inner {
+          width: 640px;
+        }
+        #center {
+          width: 640px;
+        }
+      }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="/bbf.js"></script>
+  </head>
+  <body>
+    <div id="header">
+      <div id="header-inner">
+        The Big Button Factory
+        <div id="auth">
+          Enter FacebookID or<br>@TwitterName to begin: <input id="name" type="text">
+          <img id="photo" src="">
+          <input type="button" id="begin" value="Start">
+        </div>
+      </div>
+    </div>
+    <div id="center">
+        <div id="left">
+            Left
+        </div>
+        <div id="right">
+            <a class="twitter-timeline" href="https://twitter.com/search?q=nodemonitor" data-widget-id="391692305494597632">Tweets about "nodemonitor"</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+    </div>
+  </body>
+</html>
