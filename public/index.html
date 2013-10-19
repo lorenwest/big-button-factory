@@ -14,7 +14,7 @@
       }
       #header {
         background-color: rgb(21,130,171);
-        height: 46px;
+        padding: 4px 0 4px 0;
       }
       #header-inner {
         color: white;
@@ -22,8 +22,19 @@
         margin-left: auto;
         margin-right: auto;
       }
+      #logo {
+        float:left;
+        width: 600px;
+        font-size: 27px;
+        text-shadow: #FFF 1px 1px 5px;
+      }
       #auth {
-        float:right;
+        float:left;
+        width: 360px;
+      }
+      #entry {
+        float: right;
+        margin-top: -13px;
       }
       #photo {
         height: 0;
@@ -31,18 +42,17 @@
       }
       #center {
         width: 960px;
+        padding-top: 20px;
         margin-left: auto;
         margin-right: auto;
       }
       #left {
         float: left;
-        width: 639px;
-        border-right: 1px solid rgb(204,204,204);
-        height: 100%;
+        width: 600px;
       }
       #right {
         float: left;
-        width: 320px;
+        width: 360px;
       }
 
       /* mobile */
@@ -61,13 +71,19 @@
   <body>
     <div id="header">
       <div id="header-inner">
-        The Big Button Factory
+        <div id="logo">
+          The Big Button Factory
+        </div>
         <div id="auth">
-          Enter FacebookID or<br>@TwitterName to begin: <input id="name" type="text">
-          <img id="photo" src="">
-          <input type="button" id="begin" value="Start">
+          Enter FacebookID<br>or @TwitterName
+          <div id="entry">
+            <input id="name" type="text">
+            <input type="button" id="begin" value="Start">
+            <img id="photo" src="">
+          </div>
         </div>
       </div>
+      <div class="clearfix">&nbsp;</div>
     </div>
     <div id="center">
         <div id="left">
