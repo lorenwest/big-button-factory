@@ -1,8 +1,8 @@
 $(function(){
 
   // Constants
-  var BUTTONS_PER_TRAY = 2;
-  var NUM_TRAYS = 5;
+  var BUTTONS_PER_TRAY = 20;
+  var NUM_TRAYS = 4;
 
   // Create the BBF namespace
   var BBF = {trays:{}};
