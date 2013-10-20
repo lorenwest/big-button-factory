@@ -3,120 +3,21 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Big Button Factory`</title>
-    <meta name="description" content="Monitor-Min Demo App.  See http://github.com/lorenwest/monitor-min for more information."/>
+    <title>Big Button Factory</title>
+    <meta name="description" content="Monitor-Min Demo App.  See http://github.com/lorenwest/big-button-factory for more information."/>
     <meta name="author" content="Open Source http://github.com/lorenwest">
     <meta name="author" content="Open Source http://github.com/derrickwest">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        margin: 0;
-      }
-      #header {
-        background-color: rgb(21,130,171);
-        padding: 4px 0 4px 0;
-      }
-      #header-inner {
-        color: white;
-        width: 960px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      #logo {
-        float:left;
-        width: 600px;
-        font-size: 27px;
-        text-shadow: #FFF 1px 1px 5px;
-      }
-      #auth {
-        float:left;
-        width: 360px;
-        margin-top: 10px;
-      }
-      #entry {
-        float: right;
-        margin-top: -8px;
-      }
-      #name {
-        width: 170px;
-        margin-top: 4px;
-      }
-      #begin {
-        margin-top: 4px;
-      }
-      #photo {
-        height: 34px;
-        width: 34px;
-        border: 1px solid #aaa;
-        border-radius: 4px;
-        margin-top: -3px;
-        display: none;
-      }
-      #center {
-        width: 960px;
-        padding-top: 20px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      #left {
-        float: left;
-        width: 600px;
-      }
-      #right {
-        float: left;
-        width: 360px;
-      }
-
-      .tray {
-        margin-bottom: 20px;
-      }
-
-      .bbf-button {
-        cursor: pointer;
-        float:left;
-        margin: 10px 20px 10px 0px;
-        height: 16px; width: 48px;
-        border: 1px solid white;
-      }
-      .bbf-button:hover {
-        opacity: 1;
-        border: 1px solid #DDD;
-      }
-      .bbf-button.pushed {
-        margin: 11px 19px 9px 1px;
-      }
-
-      .red {
-        background-color: red;
-      }
-
-      .blue {
-        background-color: blue;
-      }
-
-      .green {
-        background-color: green;
-      }
-
-      /* mobile */
-      @media (max-width: 960px){
-        #header-inner {
-          width: 640px;
-        }
-        #center {
-          width: 640px;
-        }
-      }
-    </style>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bbf.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script type="text/javascript" src="/monitor-min-all.min.js"></script>
+    <script type="text/javascript" src="http://rawgithub.com/lorenwest/monitor-min/master/dist/monitor-min-all.min.js"></script>
     <script type="text/javascript" src="/bbf.js"></script>
   </head>
   <body>
     <div id="header">
       <div id="header-inner">
         <div id="logo">
-          The Big Button Factory
+          Big Button Factory
         </div>
         <div id="auth">
           Gravatar email
@@ -132,11 +33,11 @@
       <div class="clearfix">&nbsp;</div>
     </div>
     <div id="center">
-        <div id="left"></div>
-        <div id="right">
-            <a class="twitter-timeline" href="https://twitter.com/search?q=nodemonitor" data-widget-id="391692305494597632">Tweets about "nodemonitor"</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-        </div>
+      <div id="left">&nbsp;</div>
+      <div id="right">
+        <a class="twitter-timeline" href="https://twitter.com/search?q=nodemonitor" data-widget-id="391692305494597632">Tweets about "nodemonitor"</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+      </div>
     </div>
   </body>
 </html>

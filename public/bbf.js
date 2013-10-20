@@ -2,22 +2,23 @@ $(function(){
 
   // Constants
   var BUTTONS_PER_TRAY = 16;
+  var NUM_TRAYS = 5;
 
   // Create the BBF namespace
-  var BBF = {};
+  var BBF = {trays:{}};
 
   // Button Tray Class
   BBF.Tray = function(options) {
     var t = this;
-    t.trayId = options.trayId;
-    t.buttonName = options.buttonName;
-    t.buttonType = options.buttonType;
+    t.num = options.num;
+    t.name = options.name;
+    t.buttonClass = options.buttonClass;
 
     // Build the HTML
-    var html = '<div id="tray-' + t.trayId + '" class="tray clearfix">';
-    html += '<div class="button-name">' + t.buttonName + '</div>';
+    var html = '<div id="Tray' + t.num + '" class="tray clearfix">';
+    html += '<div class="tray-name">' + t.name + '</div>';
     for (var i = 0; i < BUTTONS_PER_TRAY; i++) {
-      html += '<div id="t' + t.trayId + '-b' + i + '" class="bbf-button ' + t.buttonType + '">&nbsp;</div>';
+      html += '<div id="B' + t.num + '_' + i + '" class="bbf-button ' + t.buttonClass + '">&nbsp;</div>';
     }
     html += '</div>';
     $(html).appendTo('#left');
@@ -40,20 +41,45 @@ $(function(){
     var t = this;
   };
 
-  var bbfMonitor = new Monitor({probeClass: 'BBFProbe'});
-  bbfMonitor.connect(function(){
-    console.log(bbfMonitor.toJSON());
+  // Connect to the backend monitor that represents the current button trays
+  var BBFMonitor = new Monitor({probeClass: 'BBFProbe'});
+  BBFMonitor.connect(function(error){
+
+    // Add the trays
+    for (var trayNum = 0; trayNum < NUM_TRAYS; trayNum++) {
+
+      // Visualize the tray
+      var trayId = 'Tray' + trayNum;
+      var monitorTray = BBFMonitor.get(trayId);
+      BBF.trays[trayId] = new BBF.Tray({
+        num: trayNum,
+        name: monitorTray.name,
+        buttonClass: monitorTray.buttonClass
+      });
+
+      // Set the button photos
+      for (var buttonNum = 0; buttonNum < BUTTONS_PER_TRAY; buttonNum++) {
+        var buttonId = 'B' + trayNum + '_' + buttonNum;
+        var userKey = BBFMonitor.get(buttonId);
+        if (userKey.length > 0) {
+          $('#' + buttonId).css('backgroundImage', 'http://www.gravatar.com/avatar/' + userKey + '.jpg');
+        }
+      }
+    }
+
   });
 
   // TEMP: See how the tray works
-  var tray1 = new BBF.Tray({trayId: 1, buttonType: 'red', buttonName: 'Big Red'});
+  /*
+  var tray1 = new BBF.Tray({id: 1, buttonType: 'red', trayName: 'Big Red'});
   tray1.show();
 
-  var tray2 = new BBF.Tray({trayId: 2, buttonType: 'blue', buttonName: 'Blue Lagoon'});
+  var tray2 = new BBF.Tray({id: 2, buttonType: 'blue', trayName: 'Blue Lagoon'});
   tray2.show();
+  */
 
   $('#left').delegate('.bbf-button', 'click', function() {
-    var tray3 = new BBF.Tray({trayId: 3, buttonType: 'green', buttonName: 'Green Frog'});
+    var tray3 = new BBF.Tray({id: 3, buttonType: 'green', trayName: 'Green Frog'});
     tray3.show();
   })
 

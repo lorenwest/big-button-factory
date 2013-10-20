@@ -1,0 +1,111 @@
+body {
+  margin: 0;
+}
+
+#header {
+  background-color: rgb(21,130,171);
+  padding: 4px 0 4px 0;
+}
+
+#header-inner {
+  color: white;
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#logo {
+  float:left;
+  width: 600px;
+  font-size: 27px;
+  text-shadow: #FFF 1px 1px 5px;
+}
+
+#auth {
+  float:left;
+  width: 360px;
+  margin-top: 10px;
+}
+
+#entry {
+  float: right;
+  margin-top: -8px;
+}
+
+#name {
+  width: 170px;
+  margin-top: 4px;
+}
+
+#begin {
+  margin-top: 4px;
+}
+
+#photo {
+  height: 34px;
+  width: 34px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  margin-top: -3px;
+  display: none;
+}
+
+#center {
+  width: 960px;
+  padding-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#left {
+  float: left;
+  width: 600px;
+}
+
+#right {
+  float: left;
+  width: 360px;
+}
+
+.tray {
+  margin-bottom: 20px;
+}
+
+.bbf-button {
+  cursor: pointer;
+  float:left;
+  margin: 10px 20px 10px 0px;
+  height: 16px; width: 48px;
+  border: 1px solid white;
+}
+
+.bbf-button:hover {
+  opacity: 1;
+  border: 1px solid #DDD;
+}
+
+.bbf-button.pushed {
+  margin: 11px 19px 9px 1px;
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.green {
+  background-color: green;
+}
+
+/* mobile */
+@media (max-width: 960px){
+  #header-inner {
+    width: 640px;
+  }
+  #center {
+    width: 640px;
+  }
+}
