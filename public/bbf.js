@@ -40,6 +40,11 @@ $(function(){
     var t = this;
   };
 
+  var bbfMonitor = new Monitor({probeClass: 'BBFProbe'});
+  bbfMonitor.connect(function(){
+    console.log(bbfMonitor.toJSON());
+  });
+
   // TEMP: See how the tray works
   var tray1 = new BBF.Tray({trayId: 1, buttonType: 'red', buttonName: 'Big Red'});
   tray1.show();

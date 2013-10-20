@@ -1,7 +1,7 @@
 // Default configurations.
 module.exports = {
   BBF: {
-    port: 2000
+    port: 3000
   },
   MonitorMin: {
     appName: 'BigButtonFactory',
