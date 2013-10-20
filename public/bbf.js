@@ -1,7 +1,7 @@
 $(function(){
 
   // Constants
-  var BUTTONS_PER_TRAY = 16;
+  var BUTTONS_PER_TRAY = 2;
   var NUM_TRAYS = 5;
 
   // Create the BBF namespace
@@ -18,10 +18,10 @@ $(function(){
     var html = '<div id="Tray' + t.num + '" class="tray clearfix">';
     html += '<div class="tray-name">' + t.name + '</div>';
     for (var i = 0; i < BUTTONS_PER_TRAY; i++) {
-      html += '<div id="B' + t.num + '_' + i + '" class="bbf-button ' + t.buttonClass + '">&nbsp;</div>';
+      html += '<div id="B' + t.num + '_' + i + '" class="bbf-button ' + t.buttonClass + '" src="">&nbsp;</div>';
     }
     html += '</div>';
-    $(html).appendTo('#left');
+    $(html).appendTo('#Tray' + t.num + 'Container');
 
   };
   var TrayProto = BBF.Tray.prototype;
@@ -63,14 +63,20 @@ $(function(){
   // Handle a button click
   $('#left').delegate('.bbf-button', 'click', function(event) {
     var buttonId = event.currentTarget.id,
-        photoUrl = window.photoUrl;
+        photoUrl = window.photoUrl,
+        currentUrl = $('#' + buttonId).attr('src');
+
     if (!photoUrl) {
       alert('Enter your gravitar email to push buttons.')
       return;
     }
-    if ($('#' + buttonId).attr('src').length == 0) {
+
+    // Don't allow a click if it's already set
+    if ($('#' + buttonId).attr('src').length > 0) {
       return;
     }
+
+    // Tell the backend the button was pushed
     BBFMonitor.control('buttonPushed', {buttonId: buttonId, photoUrl: photoUrl});
   });
 
@@ -80,14 +86,33 @@ $(function(){
     for (attrName in changedAttrs) {
 
       // Has a tray changed?
-      if (attrName.indexOf('Tray') === 0) {
+      if (attrName.indexOf('Tray') === 0 && changedAttrs[attrName].name != BBF.trays[attrName].name) {
+        // Animate the tray out
+        var trayId = attrName,
+            trayNum = trayId.substr(4,1),
+            selector = '#' + trayId,
+            oldTray = $(selector);
+        oldTray.animate({marginLeft: -2000}, 360, function() {
+
+          oldTray.remove();
+          var monitorTray = BBFMonitor.get(trayId);
+          BBF.trays[trayId] = new BBF.Tray({
+            num: trayNum,
+            name: monitorTray.name,
+            buttonClass: monitorTray.buttonClass
+          });
+
+          $(selector).css({marginLeft:-2000}).animate({marginLeft: 0}, 360);
+        });
       }
 
       // Has a button changed?
       if (attrName.indexOf('B') === 0) {
         var buttonId = attrName;
         var pictureUrl = changedAttrs[attrName];
-        $('#' + buttonId).attr('src', pictureUrl).css('backgroundImage', 'url(' + pictureUrl + ')');
+        if (pictureUrl.length > 0) {
+          $('#' + buttonId).attr('src', pictureUrl).css('backgroundImage', 'url(' + pictureUrl + ')');
+        }
       }
     }
   });
