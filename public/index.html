@@ -31,14 +31,26 @@
       #auth {
         float:left;
         width: 360px;
+        margin-top: 10px;
       }
       #entry {
         float: right;
-        margin-top: -13px;
+        margin-top: -8px;
+      }
+      #name {
+        width: 170px;
+        margin-top: 4px;
+      }
+      #begin {
+        margin-top: 4px;
       }
       #photo {
-        height: 0;
-        width: 0;
+        height: 34px;
+        width: 34px;
+        border: 1px solid #aaa;
+        border-radius: 4px;
+        margin-top: -3px;
+        display: none;
       }
       #center {
         width: 960px;
@@ -53,6 +65,37 @@
       #right {
         float: left;
         width: 360px;
+      }
+
+      .tray {
+        margin-bottom: 20px;
+      }
+
+      .bbf-button {
+        cursor: pointer;
+        float:left;
+        margin: 10px 20px 10px 0px;
+        height: 16px; width: 48px;
+        border: 1px solid white;
+      }
+      .bbf-button:hover {
+        opacity: 1;
+        border: 1px solid #DDD;
+      }
+      .bbf-button.pushed {
+        margin: 11px 19px 9px 1px;
+      }
+
+      .red {
+        background-color: red;
+      }
+
+      .blue {
+        background-color: blue;
+      }
+
+      .green {
+        background-color: green;
       }
 
       /* mobile */
@@ -75,20 +118,20 @@
           The Big Button Factory
         </div>
         <div id="auth">
-          Enter FacebookID<br>or @TwitterName
+          Gravatar email
           <div id="entry">
-            <input id="name" type="text">
-            <input type="button" id="begin" value="Start">
-            <img id="photo" src="">
+            <form action="javascript:">
+              <img id="photo" src="">
+              <input id="name" type="text">
+              <input type="submit" id="begin" value="Start">
+            </form>
           </div>
         </div>
       </div>
       <div class="clearfix">&nbsp;</div>
     </div>
     <div id="center">
-        <div id="left">
-            Left
-        </div>
+        <div id="left"></div>
         <div id="right">
             <a class="twitter-timeline" href="https://twitter.com/search?q=nodemonitor" data-widget-id="391692305494597632">Tweets about "nodemonitor"</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
