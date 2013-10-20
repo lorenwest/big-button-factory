@@ -56,17 +56,6 @@ $(function(){
         name: monitorTray.name,
         buttonClass: monitorTray.buttonClass
       });
-
-      /*
-      // Set the button photos
-      for (var buttonNum = 0; buttonNum < BUTTONS_PER_TRAY; buttonNum++) {
-        var buttonId = 'B' + trayNum + '_' + buttonNum;
-        var pictureUrl = BBFMonitor.get(buttonId);
-        if (pictureUrl.length > 0) {
-          $('#' + buttonId).css('backgroundImage', 'url(' + pictureUrl + ')');
-        }
-      }
-      */
     }
 
   });
@@ -77,6 +66,9 @@ $(function(){
         photoUrl = window.photoUrl;
     if (!photoUrl) {
       alert('Enter your gravitar email to push buttons.')
+      return;
+    }
+    if ($('#' + buttonId).attr('src').length == 0) {
       return;
     }
     BBFMonitor.control('buttonPushed', {buttonId: buttonId, photoUrl: photoUrl});
@@ -95,8 +87,7 @@ $(function(){
       if (attrName.indexOf('B') === 0) {
         var buttonId = attrName;
         var pictureUrl = changedAttrs[attrName];
-
-        $('#' + buttonId).css('backgroundImage', 'url(' + pictureUrl + ')');
+        $('#' + buttonId).attr('src', pictureUrl).css('backgroundImage', 'url(' + pictureUrl + ')');
       }
     }
   });
