@@ -42,7 +42,7 @@ $(function(){
   };
 
   // Connect to the backend monitor that represents the current button trays
-  var BBFMonitor = new Monitor({probeClass: 'BBFProbe'});
+  window.BBFMonitor = new Monitor({probeClass: 'BBFProbe'});
   BBFMonitor.connect(function(error){
 
     // Add the trays
@@ -57,43 +57,67 @@ $(function(){
         buttonClass: monitorTray.buttonClass
       });
 
+      /*
       // Set the button photos
       for (var buttonNum = 0; buttonNum < BUTTONS_PER_TRAY; buttonNum++) {
         var buttonId = 'B' + trayNum + '_' + buttonNum;
-        var userKey = BBFMonitor.get(buttonId);
-        if (userKey.length > 0) {
-          $('#' + buttonId).css('backgroundImage', 'http://www.gravatar.com/avatar/' + userKey + '.jpg');
+        var pictureUrl = BBFMonitor.get(buttonId);
+        if (pictureUrl.length > 0) {
+          $('#' + buttonId).css('backgroundImage', 'url(' + pictureUrl + ')');
         }
       }
+      */
     }
 
   });
 
-  // TEMP: See how the tray works
-  /*
-  var tray1 = new BBF.Tray({id: 1, buttonType: 'red', trayName: 'Big Red'});
-  tray1.show();
+  // Handle a button click
+  $('#left').delegate('.bbf-button', 'click', function(event) {
+    var buttonId = event.currentTarget.id,
+        photoUrl = window.photoUrl;
+    if (!photoUrl) {
+      alert('Enter your gravitar email to push buttons.')
+      return;
+    }
+    BBFMonitor.control('buttonPushed', {buttonId: buttonId, photoUrl: photoUrl});
+  });
 
-  var tray2 = new BBF.Tray({id: 2, buttonType: 'blue', trayName: 'Blue Lagoon'});
-  tray2.show();
-  */
+  // Notify me when the BBFMonitor changes
+  BBFMonitor.on('change', function(){
+    var changedAttrs = BBFMonitor.changedAttributes();
+    for (attrName in changedAttrs) {
 
-  $('#left').delegate('.bbf-button', 'click', function() {
-    var tray3 = new BBF.Tray({id: 3, buttonType: 'green', trayName: 'Green Frog'});
-    tray3.show();
-  })
+      // Has a tray changed?
+      if (attrName.indexOf('Tray') === 0) {
+      }
 
+      // Has a button changed?
+      if (attrName.indexOf('B') === 0) {
+        var buttonId = attrName;
+        var pictureUrl = changedAttrs[attrName];
 
-  // Convert gravatar email into photo url
+        $('#' + buttonId).css('backgroundImage', 'url(' + pictureUrl + ')');
+      }
+    }
+  });
+
+  // Get the user's photo URL
   var gravatarUrl = function(email) {
     var trimmed = $.trim(email).toLowerCase();
     return 'http://www.gravatar.com/avatar/' + MD5(trimmed) + '.jpg';
   };
   $('#begin').click(function(){
-    var photoUrl = gravatarUrl($('#name').val());
+    window.photoUrl = gravatarUrl($('#name').val());
+    localStorage.photoUrl = photoUrl;
     $('#photo').attr('src', photoUrl).css({display:'inline'});
   });
   $('#name').focus();
+
+  // Set the photo url if it's found in local storage
+  if (localStorage.photoUrl) {
+    window.photoUrl = localStorage.photoUrl;
+    $('#photo').attr('src', photoUrl).css({display:'inline'});
+  }
 
 });
 

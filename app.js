@@ -1,9 +1,9 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
-var BBFProbe = require('./lib/BBFProbe');
-var Monitor = require('monitor-min');
 var config = require('config');
+var Monitor = require('monitor-min');
+var BBFProbe = require('./lib/BBFProbe');
 var app = express();
 
 
