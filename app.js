@@ -4,6 +4,7 @@ var path = require('path');
 var config = require('config');
 var Monitor = require('monitor-min');
 var BBFProbe = require('./lib/BBFProbe');
+var ConfigMonitor = require('config-monitor');
 var app = express();
 
 

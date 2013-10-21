@@ -22,7 +22,8 @@
   "dependencies": {
     "config": ">=0.4.17 <0.5.0",
     "express": ">=3.4.2 <3.5.0",
-    "monitor-min": ">=0.5.8 <0.6.0"
+    "monitor-min": ">=0.5.8 <0.6.0",
+    "config-monitor": ">=0.1.0 <0.2.0"
   },
   "engines": { "node": ">= 0.4.0" },
   "scripts": {
