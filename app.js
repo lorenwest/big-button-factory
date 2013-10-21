@@ -8,7 +8,7 @@ var app = express();
 
 
 app.use(express.static(path.join(__dirname, 'public')));
-var appServer = http.createServer(app).listen(config.BBF.port, function(){
+var appServer = http.createServer(app).listen(config.BBF.serverPort, function(){
 
   // Splat
   console.log('' +
@@ -17,7 +17,7 @@ var appServer = http.createServer(app).listen(config.BBF.port, function(){
   ' / _  / / _ `/ / _  / // / __/ __/ _ \\/ _ \\  / _// _ `/ __/ __/ _ \\/ __/ // / \n' +
   '/____/_/\\_, / /____/\\_,_/\\__/\\__/\\___/_//_/ /_/  \\_,_/\\__/\\__/\\___/_/  \\_, /  \n' +
   '       /___/                                                          /___/');
-  console.log('Express server listening on port ' + config.BBF.port);
+  console.log('Express server listening on port ' + config.BBF.serverPort);
 
   // Add the monitor-min service to the existing app server
   var monitorService = new Monitor.Server({server:appServer});
