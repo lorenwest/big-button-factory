@@ -25,6 +25,7 @@ body {
   float:left;
   width: 360px;
   margin-top: 10px;
+  font-size: 14px;
 }
 
 #entry {
@@ -47,7 +48,7 @@ body {
   border: 1px solid #aaa;
   border-radius: 4px;
   margin-top: -3px;
-  display: none;
+  cursor: pointer;
 }
 
 #center {
@@ -124,7 +125,7 @@ body {
   background-image: url(http://rawgithub.com/lorenwest/big-button-factory/master/public/img/quote.gif);
 }
 .B9 {
-  background-image: url(/http://rawgithub.com/lorenwest/big-button-factory/master/publicimg/2w.jpg);
+  background-image: url(/http://rawgithub.com/lorenwest/big-button-factory/master/public/img/2w.jpg);
 }
 .B10 {
   background-image: url(http://rawgithub.com/lorenwest/big-button-factory/master/public/img/3w.jpg);

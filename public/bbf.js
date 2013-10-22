@@ -50,7 +50,7 @@ $(function(){
         currentUrl = $('#' + buttonId).attr('src');
 
     if (!photoUrl) {
-      alert('Enter your gravitar email to push buttons.')
+      alert('Enter your Profile Photo to push buttons')
       return;
     }
 
