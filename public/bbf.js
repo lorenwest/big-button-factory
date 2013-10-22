@@ -130,7 +130,7 @@ $(function(){
     }
 
     // Is it an url to a photo?
-    if (userName.match(/^http[s]+:\/\//i)) {
+    if (userName.match(/^http[s]?:\/\//i)) {
       return showPhoto(userName, userName);
     }
 
