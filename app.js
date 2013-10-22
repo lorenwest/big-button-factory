@@ -2,9 +2,9 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var config = require('config');
-var Monitor = require('monitor-min');
 var BBFProbe = require('./lib/BBFProbe');
 var ConfigMonitor = require('config-monitor');
+var Monitor = require('monitor-min').start();
 var app = express();
 
 
@@ -18,7 +18,7 @@ var appServer = http.createServer(app).listen(config.BBF.serverPort, function(){
   ' / _  / / _ `/ / _  / // / __/ __/ _ \\/ _ \\  / _// _ `/ __/ __/ _ \\/ __/ // / \n' +
   '/____/_/\\_, / /____/\\_,_/\\__/\\__/\\___/_//_/ /_/  \\_,_/\\__/\\__/\\___/_/  \\_, /  \n' +
   '       /___/                                                          /___/');
-  console.log('Express server listening on port ' + config.BBF.serverPort);
+  console.log('Serving buttons on port ' + config.BBF.serverPort);
 
   // Add the monitor-min service to the existing app server
   var monitorService = new Monitor.Server({server:appServer});
