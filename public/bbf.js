@@ -1,8 +1,13 @@
 $(function(){
 
   // Constants
-  var BUTTONS_PER_TRAY = 20;
-  var NUM_TRAYS = 4;
+  var BUTTONS_PER_TRAY = 20,
+      NUM_TRAYS = 4,
+      AJAX_LOADER = '/img/ajax-loader.gif',
+      HELP_IMG = '/img/question.png';
+
+  // Preload images
+  $('<img/>')[0].src = AJAX_LOADER;
 
   // Create the BBF namespace
   var BBF = {trays:{}};
@@ -103,16 +108,15 @@ $(function(){
     }
   });
 
-  // Get the user's photo URL
-  var gravatarUrl = function(email) {
-    var trimmed = $.trim(email).toLowerCase();
-    return 'http://www.gravatar.com/avatar/' + MD5(trimmed) + '.jpg';
-  };
+  // Show the help screen
+  $('#photo').on('click', function() {
+    alert('Add your profile photo to start.\n\nThis can be your github name,\nyour @twitterName,\nyour gravatar email address,\nor any photo URL starting with http://');
+  });
 
   // Show the users photo, save to localStorage, and make global
   var showPhoto = function(userName, photoUrl) {
     $('#name').val(userName);
-    $('#photo').attr('src', photoUrl).css({display:'inline'});
+    $('#photo').attr('src', photoUrl);
     localStorage.photoUrl = photoUrl;
     localStorage.userName = userName;
     window.photoUrl = photoUrl;
@@ -121,22 +125,25 @@ $(function(){
 
   // Process the user name into their photo URL
   $('#begin').click(function(){
-    var userName = $('#name').val().trim(),
+    var userName = $('#name').val(),
+        trimmedName = userName.trim(),
         nameType = null;
 
     // Get the user name and
     if (!userName) {
+      showPhoto('',HELP_IMG);
+      window.photoUrl = null;
       return;
     }
 
     // Is it an url to a photo?
-    if (userName.match(/^http[s]?:\/\//i)) {
-      return showPhoto(userName, userName);
+    if (trimmedName.match(/^http[s]?:\/\//i)) {
+      return showPhoto(trimmedName, trimmedName);
     }
 
     // It's a twitter name if it starts with a @
-    if (userName.match(/^@/)) {
-      userName = userName.substr(1);
+    if (trimmedName.match(/^@/)) {
+      trimmedName = trimmedName.substr(1);
       nameType = 'twitter';
     }
 
@@ -150,10 +157,14 @@ $(function(){
       nameType = 'github';
     }
 
+    // Load the ajax spinner
+    $('#photo').attr('src', AJAX_LOADER);
+
     // Tell the backend the button was pushed
-    BBFMonitor.control('findPhotoUrl', {type: nameType, name: userName}, function(err, photoUrl){
+    BBFMonitor.control('findPhotoUrl', {type: nameType, name: trimmedName}, function(err, photoUrl){
       if (err) {
-        alert('Error while finding user photo: ' + JSON.stringify(err));
+        showPhoto('',HELP_IMG);
+        alert('Oops - we couldn\'t find that account.');
         return;
       }
       showPhoto(userName, photoUrl);
