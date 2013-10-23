@@ -1,7 +1,7 @@
 {
   "name": "big-button-factory",
   "description": "Monitor-Min Demo App",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "keywords": ["monitor", "node-monitor", "demo", "big-button-factory", "monitoring", "control"],
   "author": {
     "name": "Loren West",
